@@ -2,9 +2,22 @@
 
 context('Funcionalidade Login', () =>{
 
-    it('Deve fazer login com sucesso', () =>{
+    beforeEach(() => {
 
         cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+
+    });
+
+    afterEach(() => {
+
+        cy.screenshot()
+        
+    });
+    
+    
+
+    it('Deve fazer login com sucesso', () =>{
+
         cy.get('#username').type('aluno_ebac@teste.com')
         cy.get('#password').type('teste@teste.com')
         cy.get('.woocommerce-form > .button').click()
@@ -15,7 +28,6 @@ context('Funcionalidade Login', () =>{
 
     it('Deve exibir mensagem de erro ao informar senha invalida', () =>{
 
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
         cy.get('#username').type('aluno_ebac@teste.com')
         cy.get('#password').type('teste@')
         cy.get('.woocommerce-form > .button').click()
@@ -25,13 +37,11 @@ context('Funcionalidade Login', () =>{
 
     it('Deve exibir mensagem de erro ao informar usuario invalida', () =>{
         
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
         cy.get('#username').type('aluno_ebac@')
         cy.get('#password').type('teste@teste.com')
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-error > li').should('contain', 'Erro: O usuário aluno_ebac@ não está registrado neste site. Se você não está certo de seu nome de usuário, experimente o endereço de e-mail.')
 
     })
-
 
 })
