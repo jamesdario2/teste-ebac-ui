@@ -37,7 +37,7 @@ context('Funcionalidade Login', () => {
 
     })
 
-    it.only('Deve fazer login com sucesso - Usando arquivo de dados', () => {
+    it.only('Deve fazer login com sucesso - Usando fixture diretamente', () => {
 
         cy.fixture('perfil').then(dados => {
 
